@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import Contenido from'./contenido';
+import Contenido from './Components/contenido';
+// import Tabla from './Components/tabla';
+import { Grid } from 'react-bootstrap';
+
 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Generador de Csv</h1>
-        </header>
-        <br/>
-        <Contenido/>
-      
-      </div>
+      <Grid>
+        <Contenido />
+        
+      </Grid>
     );
   }
 }
