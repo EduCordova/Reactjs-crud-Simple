@@ -32,7 +32,8 @@ class Tabla extends Component {
       h23: '',
       modalOpen:false,
       modalClose:true,
-      indice:0
+      indice:0,
+      total0:0
 
 
     }
@@ -161,7 +162,7 @@ class Tabla extends Component {
 
                     </Modal.Actions>
                   </Modal>
-                  <Button color="red">Borrar</Button>
+                  <Button color="red" onClick={this.handleDeleteOne.bind(this,key)}>Borrar</Button>
                 </Table.Cell>
                 <Table.Cell>{key + 1}</Table.Cell>
                 <Table.Cell>{i.h0}</Table.Cell>
@@ -197,7 +198,7 @@ class Tabla extends Component {
             <Table.Row>
               <Table.HeaderCell></Table.HeaderCell>
               <Table.HeaderCell>TOTAL</Table.HeaderCell>
-              <Table.HeaderCell>0</Table.HeaderCell>
+              <Table.HeaderCell>{this.state.total0}</Table.HeaderCell>
               <Table.HeaderCell>0</Table.HeaderCell>
               <Table.HeaderCell>0</Table.HeaderCell>
               <Table.HeaderCell>0</Table.HeaderCell>
@@ -227,15 +228,22 @@ class Tabla extends Component {
           </Table.Footer>
         </Table>
         <br />
-        <Button color="teal">Generar Excel</Button> <Button color="red">Borrar todos los datos</Button>
+        <Button color="teal">Generar Excel</Button> <Button onClick={this.handleDeleteAll.bind(this)} color="red">Borrar todos los datos</Button>
         <br /><br />
       </div >
     )
   }
 
 
-handleZopen(e){
-
+handleDeleteAll(e){
+  this.setState({
+    caudales :[]
+  })
+}
+handleDeleteOne(key){
+  this.setState({
+    caudales:this.state.caudales.filter((_,i)=>i !== key)
+  })
 }
 
   //GUARDA TODOS LOS CAUDALES  EN EL NUEVO ARREGLO
@@ -269,8 +277,15 @@ handleZopen(e){
         cc[i].h21 = this.state.h21;
         cc[i].h22 = this.state.h22;
         cc[i].h23 = this.state.h23;
+
+        let total=0;
+
+        for(i=0;i<cc.length;i++){
+          total = total+parseFloat(cc[i].h0)
+        }
         
         this.setState({
+          total0:total,
           caudales: cc,
           modalOpen: false,
           h0: '',
@@ -343,9 +358,6 @@ handleZopen(e){
     console.log(e)
      let key = e
     let cargandoData =JSON.parse(JSON.stringify(this.state.caudales))
-
-
-
     this.setState({
       modalOpen: true,
       indice:e,
