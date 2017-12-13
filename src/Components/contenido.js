@@ -11,7 +11,7 @@ class Contenido extends Component {
         super();
         this.state = {
             fecha: new Date().toISOString().slice(0, 10),
-            hora: "01:00",
+            hora: "00:00",
             caudal: '',
             myarray: []
         }
@@ -51,7 +51,8 @@ class Contenido extends Component {
         this.setState({
             //  myarray:[...this.state.myarray,{"hora":this.state.fecha,"fecha":this.state.hora}]
             myarray: this.state.myarray.concat({ "caudal": this.state.caudal, "hora": this.state.hora }),
-            caudal: ''
+            caudal: '',
+            
 
         })
 

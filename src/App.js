@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
-import Contenido from './Components/contenido';
+import 'semantic-ui-css/semantic.min.css';
+//import Contenido from './Components/contenido';
+import Caudales from './pages/caudales'
 // import Tabla from './Components/tabla';
-import { Grid } from 'react-bootstrap';
+import { Segment } from 'semantic-ui-react';
 
 
 
 class App extends Component {
   render() {
     return (
-      <Grid>
-        <Contenido />
-        
-      </Grid>
+      <Segment>
+        <Caudales />
+      </Segment>
     );
   }
 }
