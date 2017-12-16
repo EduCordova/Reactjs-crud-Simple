@@ -2,4 +2,4 @@
 
 link demo -> https://educordova.github.io/Reactjs-crud-Simple/ 
 
-falta implementar el Update xD
+falta mover todo a  redux 
